@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
-            name="user"
-            type="com.example.storeapp.User" />
+            name="view_model"
+            type="com.example.storeapp.MainActivityViewModel" />
+
         <variable
             name="title"
             type="String" />
@@ -24,7 +26,7 @@
             android:layout_marginTop="40dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@={user.name}"
+            android:text="@={view_model.user.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title_login" />
@@ -36,7 +38,7 @@
             android:layout_marginTop="32dp"
             android:ems="10"
             android:inputType="textPassword"
-            android:text="@={user.password}"
+            android:text="@={view_model.user.password}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_user_name" />
@@ -59,7 +61,7 @@
             android:layout_marginTop="120dp"
             android:layout_marginEnd="24dp"
             android:gravity="center"
-            android:text="@={user.name}"
+            android:text="@{title}"
             android:textSize="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
