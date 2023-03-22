@@ -1,6 +1,6 @@
 package com.example.storeapp
 
-abstract class User(val name: String, val password: String) {
+abstract class User(var name: String, var password: String) {
 
     open fun login(): Boolean {
         return name == "fabian@correo.com" && password == "123"
