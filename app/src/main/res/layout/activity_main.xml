@@ -7,7 +7,7 @@
 
         <variable
             name="view_model"
-            type="com.example.storeapp.MainActivityViewModel" />
+            type="com.example.storeapp.viewmodel.MainActivityViewModel" />
 
         <variable
             name="title"
@@ -17,7 +17,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".view.MainActivity">
 
         <EditText
             android:id="@+id/et_user_name"

@@ -1,11 +1,13 @@
-package com.example.storeapp
+package com.example.storeapp.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.example.storeapp.model.Product
+import com.example.storeapp.view.ProductAdapter
 
 class ProductListActivityViewModel: ViewModel() {
 
     val products:ArrayList<Product> = arrayListOf()
-    var adapter:ProductAdapter = ProductAdapter(products);
+    var adapter: ProductAdapter = ProductAdapter(products);
 
     fun refreshData(){
         adapter.refresh(products)

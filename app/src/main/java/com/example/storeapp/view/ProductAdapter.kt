@@ -1,14 +1,17 @@
-package com.example.storeapp
+package com.example.storeapp.view
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.storeapp.R
 import com.example.storeapp.databinding.ProductItemBinding
+import com.example.storeapp.model.Product
 
 class ProductAdapter(private var products: ArrayList<Product>) :
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+
+    var onItemClickListener: ((Product) -> Unit)? = null
 
     fun refresh(myProducts: ArrayList<Product>) {
         products = myProducts
@@ -17,8 +20,15 @@ class ProductAdapter(private var products: ArrayList<Product>) :
 
     class ProductViewHolder(private val binding: ProductItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(myProduct: Product) {
+        fun bind(myProduct: Product, onItemClickListener: ((Product) -> Unit)?) {
             binding.product = myProduct
+
+            binding.root.setOnClickListener {
+                onItemClickListener?.let {
+                    it(myProduct)
+                }
+            }
+
         }
     }
 
@@ -33,7 +43,8 @@ class ProductAdapter(private var products: ArrayList<Product>) :
     override fun getItemCount(): Int = products.size
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.bind(products[position])
+        holder.bind(products[position], onItemClickListener)
     }
+
 
 }

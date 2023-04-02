@@ -1,10 +1,11 @@
-package com.example.storeapp
+package com.example.storeapp.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.example.storeapp.model.User
 
 class MainActivityViewModel : ViewModel() {
 
-    var user:User=User("", "")
+    var user: User = User("", "")
 
     fun login():Boolean{
         return user.name == "fabian" && user.password == "123456"
