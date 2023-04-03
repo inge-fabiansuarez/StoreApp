@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.storeapp.R
 import com.example.storeapp.databinding.ActivityProductDetailBinding
-import com.example.storeapp.model.Product
+import com.example.storeapp.model.entity.Product
 import com.example.storeapp.viewmodel.ProductDetailActivityViewModel
 
 class ProductDetailActivity : AppCompatActivity() {

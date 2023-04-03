@@ -1,10 +1,10 @@
 package com.example.storeapp.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.storeapp.model.Product
+import com.example.storeapp.model.entity.Product
 
 class ProductDetailActivityViewModel : ViewModel() {
 
-    var product = Product("",0)
+    var product = Product(name = "", price = 0)
 
 }
