@@ -24,23 +24,23 @@ class ProductRepository(myContext: Context) {
     }
 
     private fun loadFakeData() {
-        products.apply {
-            clear()
-            add(
+
+        productDAO.apply {
+            inset(
                 Product(
                     name = "Monitor",
                     price = 10000,
                     urlImage = "https://aprendelibvrefiles.blob.core.windows.net/aprendelibvre-container/course/informatica_basica/image/compescritorio-01_xl.png"
                 )
             )
-            add(
+            inset(
                 Product(
                     name = "Teclado",
                     price = 302000,
                     urlImage = "https://aprendelibvrefiles.blob.core.windows.net/aprendelibvre-container/course/informatica_basica/image/compescritorio-01_xl.png"
                 )
             )
-            add(
+            inset(
                 Product(
                     name = "Discoduro",
                     price = 25000,
@@ -48,6 +48,7 @@ class ProductRepository(myContext: Context) {
                 )
             )
         }
+        loadAllLocal()
 
     }
 

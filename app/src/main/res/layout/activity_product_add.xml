@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="view_model"
+            type="com.example.storeapp.viewmodel.ProductFormActivityViewModel" />
+
+        <import type="com.example.storeapp.utils.BindingUtilsKt" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.ProductFormActivity">
+
+
+        <EditText
+            android:id="@+id/et_name_addproduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="433dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@={view_model.product.name}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <EditText
+            android:id="@+id/et_price_addproduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="58dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:text="@={BindingUtilsKt.intToString(view_model.product.price)}"
+            app:layout_constraintStart_toStartOf="@+id/et_name_addproduct"
+            app:layout_constraintTop_toBottomOf="@+id/et_name_addproduct" />
+
+        <Button
+            android:id="@+id/btn_add_addproduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="95dp"
+            android:text="Button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_url_addproduct" />
+
+        <EditText
+            android:id="@+id/et_url_addproduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="36dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@={view_model.product.urlImage}"
+            app:layout_constraintStart_toStartOf="@+id/et_price_addproduct"
+            app:layout_constraintTop_toBottomOf="@+id/et_price_addproduct" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="150dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="31dp"
+            android:layout_marginBottom="72dp"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintBottom_toTopOf="@+id/et_name_addproduct"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -13,11 +13,21 @@ class ProductListActivityViewModel(application: Application) : AndroidViewModel(
     var adapter: ProductAdapter = ProductAdapter(products);
     private val productRepository: ProductRepository = ProductRepository(application)
 
+    init {
+        loadProducts()
+    }
+
     fun refreshData() {
+        loadProducts()
         adapter.refresh(products)
     }
 
     fun loadProducts() {
         products = productRepository.getAllLocal()
+    }
+
+    fun deleteProduct(myProduct: Product) {
+        productRepository.deleteLocal(myProduct)
+        loadProducts()
     }
 }

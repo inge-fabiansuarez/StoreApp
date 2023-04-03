@@ -12,6 +12,7 @@ class ProductAdapter(private var products: ArrayList<Product>) :
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     var onItemClickListener: ((Product) -> Unit)? = null
+    var onItemLongClickListener: ((Product) -> Unit)? = null
 
     fun refresh(myProducts: ArrayList<Product>) {
         products = myProducts
@@ -20,7 +21,11 @@ class ProductAdapter(private var products: ArrayList<Product>) :
 
     class ProductViewHolder(private val binding: ProductItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(myProduct: Product, onItemClickListener: ((Product) -> Unit)?) {
+        fun bind(
+            myProduct: Product,
+            onItemClickListener: ((Product) -> Unit)?,
+            onItemLongClickListener: ((Product) -> Unit)?
+        ) {
             binding.product = myProduct
             /*Glide
                 .with(binding.root.context)
@@ -34,6 +39,13 @@ class ProductAdapter(private var products: ArrayList<Product>) :
                 onItemClickListener?.let {
                     it(myProduct)
                 }
+            }
+
+            binding.root.setOnLongClickListener {
+                onItemLongClickListener?.let {
+                    it(myProduct)
+                }
+                true
             }
 
         }
@@ -50,7 +62,7 @@ class ProductAdapter(private var products: ArrayList<Product>) :
     override fun getItemCount(): Int = products.size
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.bind(products[position], onItemClickListener)
+        holder.bind(products[position], onItemClickListener, onItemLongClickListener)
     }
 
 
