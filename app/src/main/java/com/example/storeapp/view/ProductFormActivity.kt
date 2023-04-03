@@ -18,14 +18,29 @@ class ProductFormActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val myProduct: Product? = intent.getSerializableExtra("product") as Product?
+
+
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_add)
         viewModel = ViewModelProvider(this)[ProductFormActivityViewModel::class.java]
 
+
         binding.viewModel = viewModel
 
-        binding.btnAddAddproduct.setOnClickListener {
-            viewModel.insert()
-            finish()
+        myProduct?.let {
+            viewModel.product = it
+            binding.btnAddAddproduct.text = "Editar producto"
+            binding.btnAddAddproduct.setOnClickListener {
+                viewModel.edit()
+                finish()
+            }
+        } ?: run {
+            binding.btnAddAddproduct.setOnClickListener {
+                viewModel.insert()
+                finish()
+            }
         }
 
     }

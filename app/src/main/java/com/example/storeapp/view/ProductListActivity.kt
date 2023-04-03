@@ -36,7 +36,7 @@ class ProductListActivity : AppCompatActivity() {
         adapter.onItemClickListener = {
 
             var intentDetalle = Intent(applicationContext, ProductDetailActivity::class.java)
-            intentDetalle.putExtra("product", it)
+            intentDetalle.putExtra("keyProduct", it.key)
             startActivity(intentDetalle)
         }
 

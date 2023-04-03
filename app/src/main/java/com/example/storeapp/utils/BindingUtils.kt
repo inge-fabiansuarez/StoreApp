@@ -6,6 +6,7 @@ import androidx.databinding.InverseMethod
 import com.bumptech.glide.Glide
 import com.example.storeapp.R
 
+
 @BindingAdapter("image")
 fun loadImagen(imageView: ImageView, url: String) {
     Glide

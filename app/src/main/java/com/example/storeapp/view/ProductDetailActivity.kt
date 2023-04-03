@@ -1,5 +1,6 @@
 package com.example.storeapp.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -13,18 +14,33 @@ class ProductDetailActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityProductDetailBinding
     lateinit var viewModel: ProductDetailActivityViewModel
+    var myProductKey: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        var myProduct: Product = intent.getSerializableExtra("product") as Product
+        myProductKey = intent.getIntExtra("keyProduct", 0)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail)
         viewModel = ViewModelProvider(this)[ProductDetailActivityViewModel::class.java]
 
-        viewModel.product = myProduct
+        viewModel.getProductByKey(myProductKey)
+
+
         binding.product = viewModel.product
 
+        binding.btnEditarDetail.setOnClickListener {
+            var intentEditar = Intent(applicationContext, ProductFormActivity::class.java)
+            intentEditar.putExtra("product", viewModel.product)
+            startActivity(intentEditar)
+        }
+
+    }
+
+    override fun onResume() {
+        viewModel.getProductByKey(myProductKey)
+        binding.product = viewModel.product
+        super.onResume()
     }
 }

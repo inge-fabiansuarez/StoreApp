@@ -13,4 +13,8 @@ class ProductFormActivityViewModel(application: Application) : AndroidViewModel(
     fun insert() {
         repositoryProduct.insetLocal(myProduct = product)
     }
+
+    fun edit() {
+        repositoryProduct.updateLocal(myProduct = product)
+    }
 }
