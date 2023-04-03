@@ -1,6 +1,7 @@
 package com.example.storeapp.model.repository
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import com.example.storeapp.model.entity.Product
 import com.example.storeapp.model.local.StoreAppDB
 import com.example.storeapp.model.local.dao.ProductDAO
@@ -9,19 +10,25 @@ class ProductRepository(myContext: Context) {
 
     private val db: StoreAppDB = StoreAppDB.getInstance(myContext)
     private val productDAO: ProductDAO = db.productDAO()
-    private var products: ArrayList<Product> = arrayListOf()
+    lateinit var products: LiveData<List<Product>>
 
-    fun getAllLocal(): ArrayList<Product> {
+    init {
         loadAllLocal()
-        return products
     }
 
     fun loadAllLocal() {
-        products = productDAO.getAll() as ArrayList<Product>
-        if (products.isEmpty()) {
+        products = productDAO.getAll()
+        if (products.value?.isEmpty() == true) {
             loadFakeData()
         }
     }
+/*
+    fun getAllLocal(): ArrayList<Product> {
+
+        return products
+    }*/
+
+
 
     private fun loadFakeData() {
 
@@ -48,11 +55,9 @@ class ProductRepository(myContext: Context) {
                 )
             )
         }
-        loadAllLocal()
-
     }
 
-    fun getByKeyLocal(key: Int): Product {
+    fun getByKeyLocal(key: Int): LiveData<Product> {
         return productDAO.getByKey(key)
     }
 

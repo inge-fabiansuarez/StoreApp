@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.storeapp.viewmodel.ProductListActivityViewModel
 import com.example.storeapp.R
 import com.example.storeapp.databinding.ActivityProductListBinding
+import com.example.storeapp.model.entity.Product
 
 class ProductListActivity : AppCompatActivity() {
 
@@ -25,9 +26,13 @@ class ProductListActivity : AppCompatActivity() {
 
 
 
-        adapter = ProductAdapter(viewModel.products)
+        adapter = ProductAdapter(arrayListOf())
 
         binding.adapter = adapter
+
+        viewModel.products.observe(this) {
+            adapter.refresh(it as ArrayList<Product>)
+        }
 
         binding.btnAddProductListProduct.setOnClickListener {
             startActivity(Intent(this, ProductFormActivity::class.java))
@@ -42,7 +47,6 @@ class ProductListActivity : AppCompatActivity() {
 
         adapter.onItemLongClickListener = {
             viewModel.deleteProduct(myProduct = it)
-            adapter.refresh(viewModel.products)
             binding.rvProductsListProducts.adapter = adapter
             Toast.makeText(applicationContext, "Se elimino el " + it.name, Toast.LENGTH_SHORT)
                 .show()
@@ -50,9 +54,14 @@ class ProductListActivity : AppCompatActivity() {
 
     }
 
+    fun loadProducts() {
+        viewModel.products.observe(this) {
+            adapter.refresh(it as ArrayList<Product>)
+        }
+    }
+
     override fun onResume() {
         super.onResume()
-        viewModel.loadProducts()
-        adapter.refresh(viewModel.products)
+        loadProducts()
     }
 }

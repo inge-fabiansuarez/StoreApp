@@ -1,5 +1,6 @@
 package com.example.storeapp.model.local.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.storeapp.model.entity.Product
 
@@ -7,10 +8,10 @@ import com.example.storeapp.model.entity.Product
 interface ProductDAO {
 
     @Query("select * from products")
-    fun getAll(): List<Product>
+    fun getAll(): LiveData<List<Product>>
 
     @Query("select * from products where key = :keyValue")
-    fun getByKey(keyValue: Int): Product
+    fun getByKey(keyValue: Int): LiveData<Product>
 
     @Insert
     fun inset(myProduct: Product)

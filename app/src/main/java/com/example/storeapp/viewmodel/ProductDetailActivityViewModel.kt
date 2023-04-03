@@ -11,7 +11,7 @@ class ProductDetailActivityViewModel(application: Application) : AndroidViewMode
     private val productRepository: ProductRepository = ProductRepository(application)
     var product = Product(name = "", price = 0)
     fun getProductByKey(myProductKey: Int) {
-        product = productRepository.getByKeyLocal(myProductKey)
+       // product = productRepository.getByKeyLocal(myProductKey)
     }
 
 
