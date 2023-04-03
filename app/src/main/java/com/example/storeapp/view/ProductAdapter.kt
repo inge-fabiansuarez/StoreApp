@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.storeapp.R
 import com.example.storeapp.databinding.ProductItemBinding
 import com.example.storeapp.model.Product
@@ -22,6 +23,13 @@ class ProductAdapter(private var products: ArrayList<Product>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(myProduct: Product, onItemClickListener: ((Product) -> Unit)?) {
             binding.product = myProduct
+            /*Glide
+                .with(binding.root.context)
+                .load(myProduct.urlImage)
+                .centerCrop()
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .into(binding.imageView);*/
+            binding.imageView
 
             binding.root.setOnClickListener {
                 onItemClickListener?.let {

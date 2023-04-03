@@ -1,5 +1,6 @@
 package com.example.storeapp.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -28,7 +29,10 @@ class ProductListActivity : AppCompatActivity() {
         viewModel.refreshData()
 
         viewModel.adapter.onItemClickListener = {
-            Toast.makeText(applicationContext, it.name, Toast.LENGTH_SHORT).show()
+
+            var intentDetalle = Intent(applicationContext, ProductDetailActivity::class.java)
+            intentDetalle.putExtra("product", it)
+            startActivity(intentDetalle)
         }
 
     }
